@@ -30,6 +30,10 @@ PRODUCT_COPY_FILES += \
     device/lge/x5/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     device/lge/x5/prebuilt/etc/init.d/10lightfixer:system/etc/init.d/10lightfixer
 
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc
+
 # GPS for volt
 PRODUCT_COPY_FILES += \
     device/lge/x5/gps/etc/gps.conf:system/etc/gps.conf
