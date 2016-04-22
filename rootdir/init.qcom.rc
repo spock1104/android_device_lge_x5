@@ -39,10 +39,6 @@ on init
 
     mkdir /firmware 0771 system system
 
-    # NFC fix
-    symlink /dev/pn547 /dev/pn544
-    symlink /dev/pn547 /dev/pn54x
-
 on post-fs
     chmod 664 /sys/devices/virtual/input/lge_touch/touch_gesture
     chown system system /sys/devices/virtual/input/lge_touch/touch_gesture
