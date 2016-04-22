@@ -45,20 +45,16 @@ TARGET_REQUIRES_BUMP := true
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=qcom
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 
-# NFC
-BOARD_HAS_NFC := true
-
-# Nfc for volt
-ifeq ($(BOARD_HAS_NFC),true)
 BOARD_NFC_CHIPSET := pn544
 BOARD_NFC_DEVICE := "/dev/pn544"
-endif
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # RIL
 BOARD_RIL_CLASS += ../../../device/lge/x5/ril/
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_LGE_RIL_SYMBOLS
+
 
 # Filesystem,
 BOARD_FLASH_BLOCK_SIZE := 131072

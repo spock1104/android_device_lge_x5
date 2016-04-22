@@ -32,7 +32,8 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc
+    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 # GPS for volt
 PRODUCT_COPY_FILES += \
@@ -41,6 +42,17 @@ PRODUCT_COPY_FILES += \
 # We are decommonizing the lights hal to support our unique setup
 PRODUCT_PACKAGES += \
     lights.msm8226
+
+#NFC packages for volt
+PRODUCT_PACKAGES += \
+    nfc.default \
+    libnfc \
+    libnfc_jni \
+    Nfc
+
+# Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
