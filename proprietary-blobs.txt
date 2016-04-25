@@ -33,12 +33,15 @@ etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 etc/firmware/cpp_firmware_v1_2_1.fw
 
-# NFC Firmware
-etc/firmware/Signedrompatch_v20.bin
-etc/firmware/Signedrompatch_v21.bin
-etc/firmware/Signedrompatch_v24.bin
-etc/firmware/Signedrompatch_v30.bin
-etc/firmware/nfc_test.bin
+# DXHCP
+etc/firmware/dxhdcp2.b00
+etc/firmware/dxhdcp2.b01
+etc/firmware/dxhdcp2.b02
+etc/firmware/dxhdcp2.b03
+etc/firmware/dxhdcp2.mdt
+
+# NFC
+lib/hw/nfc_lg.default.so
 
 # ACDB
 etc/acdbdata/Bluetooth_cal.acdb
