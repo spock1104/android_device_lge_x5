@@ -46,7 +46,6 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 us
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 
 BOARD_NFC_CHIPSET := pn544
-BOARD_NFC_DEVICE := "/dev/pn544"
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
