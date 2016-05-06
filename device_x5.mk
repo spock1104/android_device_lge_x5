@@ -28,7 +28,8 @@ PRODUCT_COPY_FILES += \
     device/lge/x5/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
     device/lge/x5/prebuilt/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     device/lge/x5/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    device/lge/x5/prebuilt/etc/init.d/10lightfixer:system/etc/init.d/10lightfixer
+    device/lge/x5/prebuilt/etc/init.d/10lightfixer:system/etc/init.d/10lightfixer \
+    device/lge/x5/prebuilt/etc/init.d/10lightshal:system/etc/init.d/10lightshal
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
@@ -40,28 +41,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/x5/gps/etc/gps.conf:system/etc/gps.conf
 
-# We are decommonizing the lights hal to support our unique setup
+# Build our own lights hal for volt
 PRODUCT_PACKAGES += \
-    lights.msm8226
-
-# NFC packages for volt
-PRODUCT_PACKAGES += \
-    nfc.default \
-    libnfc \
-    libnfc_jni \
-    Nfc \
-    Tag \
-    com.android.nfc_extras
-
-# Configs
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/prebuilt/etc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    $(LOCAL_PATH)/prebuilt/etc/nfcee_access.xml:system/etc/nfcee_access.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
-
-NFCEE_ACCESS_PATH := $(LOCAL_PATH)/prebuilt/etc/nfcee_access.xml
+    lights.x5
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal

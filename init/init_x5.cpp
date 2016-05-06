@@ -72,12 +72,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     //char devicename[PROP_VALUE_MAX];
 
     property_get("ro.boot.serialno", serial);
-    property_set("ro.product.model", "LG-LS740");
-    property_set("ro.product.device", "x5");
     property_set("ro.nfc.port", "I2C");
     property_set("ro.build.description", "x5_spr_us-user 5.0.2 LRX22G.A1423481010 15040202274a7 release-keys");
     property_set("ro.build.fingerprint", "lge/x5_spr_us/x5:5.0.2/LRX22G.A1423481010/15040202274a7:user/release-keys");
-    property_set("persist.radio.multisim.config", "");
-    property_set("telephony.lteOnCdmaDevice", "1");
-    property_set("ro.telephony.ril_class", "LgeX5RIL");
 }
