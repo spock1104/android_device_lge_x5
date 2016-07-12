@@ -42,7 +42,7 @@ PRODUCT_COPY_FILES += \
 
 # We are decommonizing the lights hal to support our unique setup
 PRODUCT_PACKAGES += \
-    lights.msm8226
+    lights.x5
 
 # NFC packages for volt
 PRODUCT_PACKAGES += \

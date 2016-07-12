@@ -19,7 +19,6 @@
 #define LOG_TAG "lights"
 
 #include <cutils/log.h>
-#include <cutils/properties.h>
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
@@ -53,7 +52,10 @@ char const*const BLUE_LED_FILE
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
-char const*const RED_BLINK_FILE
+char const*const BUTTON_FILE
+        = "/sys/class/leds/button-backlight/brightness";
+
+char const*const NOTI_BLINK_FILE
         = "/sys/class/leds/R/device/led_blink";
 
 /**
@@ -75,8 +77,8 @@ write_int(char const* path, int value)
     fd = open(path, O_RDWR);
     if (fd >= 0) {
         char buffer[20];
-        int bytes = sprintf(buffer, "%d\n", value);
-        int amt = write(fd, buffer, bytes);
+        int bytes = snprintf(buffer, sizeof(buffer), "%d\n", value);
+        ssize_t amt = write(fd, buffer, (size_t)bytes);
         close(fd);
         return amt == -1 ? -errno : 0;
     } else {
@@ -130,6 +132,9 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+    if(!dev) {
+        return -1;
+    }
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
@@ -144,6 +149,10 @@ set_speaker_light_locked(struct light_device_t* dev,
     int len;
     int onMS, offMS;
     unsigned int colorRGB;
+
+    if(!dev) {
+        return -1;
+    }
 
     if(state != NULL) {
         switch (state->flashMode) {
@@ -163,20 +172,20 @@ set_speaker_light_locked(struct light_device_t* dev,
         if (onMS > 0 && offMS > 0) {
             char blink_pattern[PAGE_SIZE];
 
-            write_str(RED_BLINK_FILE, 0);
+            write_str(NOTI_BLINK_FILE, 0);
             write_int(RED_LED_FILE, 0);
             write_int(GREEN_LED_FILE, 0);
             write_int(BLUE_LED_FILE, 0);
             sprintf(blink_pattern,"0x%x %d %d",colorRGB,onMS,offMS);
 
-            write_str(RED_BLINK_FILE, blink_pattern);
+            write_str(NOTI_BLINK_FILE, blink_pattern);
         } else {
             int red, green, blue;
             red = (colorRGB >> 16) & 0xFF;
             green = (colorRGB >> 8) & 0xFF;
             blue = colorRGB & 0xFF;
 
-            write_str(RED_BLINK_FILE, 0);
+            write_str(NOTI_BLINK_FILE, 0);
             write_int(RED_LED_FILE, red);
             write_int(GREEN_LED_FILE, green);
             write_int(BLUE_LED_FILE, blue);
@@ -205,7 +214,6 @@ handle_speaker_battery_locked(struct light_device_t* dev,
             set_speaker_light_locked(dev, &g_notification);
         }
     }
-
 }
 
 static int
@@ -252,6 +260,23 @@ set_light_attention(struct light_device_t* dev,
     return 0;
 }
 
+static int
+set_light_buttons(struct light_device_t* dev,
+        struct light_state_t const* state)
+{
+    int err = 0;
+    if(!dev) {
+        return -1;
+    }
+    int on = rgb_to_brightness(state);
+
+    /* This device has a 0-10 scale */
+    on = ceil((on * 10.0) / 255);
+    pthread_mutex_lock(&g_lock);
+    err = write_int(BUTTON_FILE, on);
+    pthread_mutex_unlock(&g_lock);
+    return err;
+}
 
 /** Close the lights device */
 static int
@@ -283,6 +308,8 @@ static int open_lights(const struct hw_module_t* module, char const* name,
         set_light = set_light_notifications;
     else if (0 == strcmp(LIGHT_ID_BATTERY, name))
         set_light = set_light_battery;
+    else if (0 == strcmp(LIGHT_ID_BUTTONS, name))
+        set_light = set_light_buttons;
     else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
         set_light = set_light_attention;
     else
@@ -291,6 +318,10 @@ static int open_lights(const struct hw_module_t* module, char const* name,
     pthread_once(&g_init, init_globals);
 
     struct light_device_t *dev = malloc(sizeof(struct light_device_t));
+
+    if(!dev)
+        return -ENOMEM;
+
     memset(dev, 0, sizeof(*dev));
 
     dev->common.tag = HARDWARE_DEVICE_TAG;
