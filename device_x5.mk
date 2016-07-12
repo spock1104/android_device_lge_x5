@@ -27,7 +27,6 @@ PRODUCT_COPY_FILES += \
     device/lge/x5/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/lge/x5/prebuilt/usr/idc/touch_dev.idc:system/usr/idc/touch_dev.idc \
     device/lge/x5/prebuilt/usr/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/lge/x5/prebuilt/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     device/lge/x5/prebuilt/etc/init.d/10lightfixer:system/etc/init.d/10lightfixer
 
 # Ramdisk
