@@ -41,7 +41,6 @@ TARGET_KERNEL_CONFIG := x5_cyanogenmod_defconfig
 TARGET_REQUIRES_BUMP := true
 
 # Kernel image
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=qcom
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 
 BOARD_NFC_CHIPSET := pn544
