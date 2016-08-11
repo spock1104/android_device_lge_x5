@@ -20,4 +20,4 @@ Front Camera | 1.3 MP
 Release Date | May 2014
 
 
-![LG Volt](http://cdn2.gsmarena.com/vv/pics/lg/lg-volt-ls740-2.jpg "LG Volt")
+![LG Volt](http://upload.wikimedia.org/wikipedia/commons/7/7f/LG_G3.png "LG Volt")
