@@ -68,11 +68,19 @@ int check_cmdline(const char param[]) {
 void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
 {
     char serial[PROP_VALUE_MAX];
-    //char device[PROP_VALUE_MAX];
-    //char devicename[PROP_VALUE_MAX];
+    char device[PROP_VALUE_MAX];
+    char devicename[PROP_VALUE_MAX];
+    
+    rc = property_get("ro.product.device", device);
+    if (!rc || !ISMATCH(device, "x5"))
+        return;
+        
 
     property_get("ro.boot.serialno", serial);
     property_set("ro.nfc.port", "I2C");
+    property_set("ro.product.name", "LG Volt")
+    property_set("ro.build.product", "x5");
+    property_set("ro.product.device", "x5");
     property_set("ro.build.description", "x5_spr_us-user 5.0.2 LRX22G.A1423481010 15040202274a7 release-keys");
     property_set("ro.build.fingerprint", "lge/x5_spr_us/x5:5.0.2/LRX22G.A1423481010/15040202274a7:user/release-keys");
 }
