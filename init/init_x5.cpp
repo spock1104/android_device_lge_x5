@@ -70,7 +70,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     char serial[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
-    
+    int rc;
     rc = property_get("ro.product.device", device);
     if (!rc || !ISMATCH(device, "x5"))
         return;
