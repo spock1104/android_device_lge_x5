@@ -69,14 +69,15 @@ int check_cmdline(const char param[]) {
 
 void vendor_load_properties()
 {
+    char platform[PROP_VALUE_MAX];
     char serial[PROP_VALUE_MAX];
     char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
     int rc;
-    rc = property_get("ro.product.device", device);
-    if (!rc || !ISMATCH(device, "x5"))
-        return;
-        
+
+    rc = property_get("ro.board.platform", platform);
+    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
+       return;
 
     property_get("ro.boot.serialno", serial);
     property_set("ro.nfc.port", "I2C");
