@@ -36,6 +36,8 @@
 #include "log.h"
 #include "util.h"
 
+#define ISMATCH(a,b) (!strncmp(a,b,PROP_VALUE_MAX))
+
 
 #define CHUNK 2048 /* read 2048 bytes at a time */
 
