@@ -80,7 +80,7 @@ void vendor_load_properties()
     property_get("ro.boot.serialno", serial);
     property_set("ro.nfc.port", "I2C");
     property_set("ro.product.model", "x5");
-    property_set("ro.product.display", "LG Volt");
+    property_set("ro.product.name", "LG Volt");
     property_set("ro.build.description", "x5_spr_us-user 5.0.2 LRX22G.A1423481010 15040202274a7 release-keys");
     property_set("ro.build.fingerprint", "lge/x5_spr_us/x5:5.0.2/LRX22G.A1423481010/15040202274a7:user/release-keys");
 }
