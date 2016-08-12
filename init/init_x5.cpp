@@ -65,14 +65,22 @@ int check_cmdline(const char param[]) {
     return 0;
 }
 
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
+    char platform[PROP_VALUE_MAX];
     char serial[PROP_VALUE_MAX];
     //char device[PROP_VALUE_MAX];
     //char devicename[PROP_VALUE_MAX];
+    int rc;
+
+    rc = property_get("ro.board.platform", platform);
+    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
+       return;
 
     property_get("ro.boot.serialno", serial);
     property_set("ro.nfc.port", "I2C");
+    property_set("ro.product.model", "x5");
+    property_set("ro.product.name", "LG Volt");
     property_set("ro.build.description", "x5_spr_us-user 5.0.2 LRX22G.A1423481010 15040202274a7 release-keys");
     property_set("ro.build.fingerprint", "lge/x5_spr_us/x5:5.0.2/LRX22G.A1423481010/15040202274a7:user/release-keys");
 }
