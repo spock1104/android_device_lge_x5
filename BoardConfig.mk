@@ -21,39 +21,32 @@
 # definition file).
 #
 
-
-# Common specific options in device_x5.mk
--include device/lge/msm8226-common/BoardConfigCommon.mk
-
-# Vendor Init
-TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_LIBINIT_DEFINES_FILE := device/lge/x5/init/init_x5.cpp
-TARGET_OTA_ASSERT_DEVICE := x5
-TARGET_RELEASETOOLS_EXTENSIONS := device/lge/x5
+TARGET_ARCH := arm
+TARGET_CPU_ABI := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := krait
 
 # Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 TARGET_BOOTLOADER_BOARD_NAME := x5
 
+# Platform
+TARGET_BOARD_PLATFORM := msm8226
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
+
 # Kernel
+BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := device/lge/x5/mkbootimg.mk
+TARGET_KERNEL_SOURCE := kernel/lge/msm8226
 TARGET_KERNEL_CONFIG := x5_cyanogenmod_defconfig
 TARGET_REQUIRES_BUMP := true
+BOARD_KERNEL_PAGESIZE := 2048
 
 # Kernel image
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 user_debug=31 msm_rtb.filter=0x37 androidboot.hardware=qcom
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
-
-BOARD_NFC_CHIPSET := pn544
-
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
-
-# RIL
-BOARD_RIL_CLASS += ../../../device/lge/x5/ril/
-TARGET_RELEASE_CPPFLAGS += -DNEEDS_LGE_RIL_SYMBOLS
-
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=g3 user_debug=31 msm_rtb.filter=0x0
 
 # Filesystem,
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -63,5 +56,33 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 2147483648
 BOARD_CACHEIMAGE_PARTITION_SIZE    := 884000000
 BOARD_PERSISTIMAGE_PARTITION_SIZE  := 33554432
 
-BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
+# TWRP Recovery
+RECOVERY_VARIANT := twrp
+TW_USE_TOOLBOX := true
+TARGET_RECOVERY_FSTAB := device/lge/x5/rootdir/twrp.fstab
+RECOVERY_FSTAB_VERSION := 2
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+DEVICE_RESOLUTION := 540x960
+TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_FLASH_FROM_STORAGE := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
+BOARD_SUPPRESS_EMMC_WIPE := true
+RECOVERY_SDCARD_ON_DATA := true
+HAVE_SELINUX := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_THEME := portrait_mdpi
+TW_NO_EXFAT_FUSE := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/mt_usb/gadget/lun%d/file"
+TW_NO_REBOOT_BOOTLOADER := true
 
