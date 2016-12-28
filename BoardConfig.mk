@@ -43,7 +43,9 @@ TARGET_REQUIRES_BUMP := true
 # Kernel image
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 
+BOARD_HAS_NFC := true
 BOARD_NFC_CHIPSET := pn544
+BOARD_NFC_DEVICE := "/dev/pn544"
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
