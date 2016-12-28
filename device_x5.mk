@@ -75,3 +75,7 @@ BOARD_HAS_QCOM_WCNSS := true
 $(call inherit-product, device/lge/msm8226-common/msm8226.mk)
 $(call inherit-product, vendor/lge/x5/x5-vendor.mk)
 
+# Recovery
+PRODUCT_COPY_FILES += device/lge/x5/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab
+
+
