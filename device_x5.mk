@@ -21,6 +21,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Specific overlay
 DEVICE_PACKAGE_OVERLAYS += device/lge/x5/overlay
 
+# Radio
+PRODUCT_PACKAGES += \
+    librmnetctl
+
 # Configs
 PRODUCT_COPY_FILES += \
     device/lge/x5/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
