@@ -36,40 +36,11 @@
 #include "log.h"
 #include "util.h"
 
-
-#define CHUNK 2048 /* read 2048 bytes at a time */
-
-int check_cmdline(const char param[]) {
-
-    char buf[CHUNK];
-    FILE *file;
-    size_t nread;
-    file = fopen("/proc/cmdline", "r");
-    if (file) {
-        while ((nread = fread(buf, 1, sizeof buf, file)) > 0) {
-                /* fwrite(buf, 1, nread, stdout); */
-                char delims[] = " ";
-                char *word = NULL;
-                word = strtok(buf, delims);
-
-                while(word != NULL) {
-                        if (!strcmp(param,word)) {
-                                fclose(file);
-                                return 1;
-                        }
-                        word = strtok(NULL, delims);
-                }
-        }
-    }	
-    fclose(file);
-    return 0;
-}
-
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
     char serial[PROP_VALUE_MAX];
-    //char device[PROP_VALUE_MAX];
-    //char devicename[PROP_VALUE_MAX];
+    char device[PROP_VALUE_MAX];
+    char devicename[PROP_VALUE_MAX];
 
     property_get("ro.boot.serialno", serial);
     property_set("ro.product.model", "LG-LS740");
