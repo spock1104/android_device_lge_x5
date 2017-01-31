@@ -26,8 +26,9 @@
 -include device/lge/msm8226-common/BoardConfigCommon.mk
 
 # Vendor Init
+TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
-LIBINIT_USE_MSM_DEFAULT := true
+TARGET_LIBINIT_DEFINES_FILE := device/lge/x5/init/init_x5.cpp
 TARGET_OTA_ASSERT_DEVICE := x5
 TARGET_RELEASETOOLS_EXTENSIONS := device/lge/x5
 
