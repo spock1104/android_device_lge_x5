@@ -38,11 +38,10 @@
 
 void vendor_load_properties()
 {
-    char serial[PROP_VALUE_MAX];
-    char device[PROP_VALUE_MAX];
     char devicename[PROP_VALUE_MAX];
 
-    property_get("ro.boot.serialno", serial);
+    std::string serial = property_get("ro.boot.serialno");
+
     property_set("ro.product.model", "LG-LS740");
     property_set("ro.product.device", "x5");
     property_set("ro.nfc.port", "I2C");
