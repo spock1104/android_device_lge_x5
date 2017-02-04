@@ -166,3 +166,18 @@ lib/rfsa/adsp/libdspCV_skel.so
 lib/rfsa/adsp/libfastcvadsp.so
 lib/rfsa/adsp/libfastcvadsp_skel.so
 lib/rfsa/adsp/libscveT2T_skel.so
+
+# Widevine DRM
+vendor/firmware/widevine.b00|aa704ce4f330a6f95456f1b0bb8d8caad8166616
+vendor/firmware/widevine.b01|0b2b977a3434aea95a2b9a7c00a63ee67af3d0cf
+vendor/firmware/widevine.b02|b1d6ec9748740a3d313ea758c4d1876b427df644
+vendor/firmware/widevine.b03|28be5d8aeb9d5091573eea42e31a102f0a2cc97a
+vendor/firmware/widevine.mdt|6c1abb99e4bf9dc91aa8f8fad619c8c2774ff2ef
+lib/liboemcrypto.so
+vendor/lib/drm/libdrmwvmplugin.so|3bee766222895f524421eb996ca6a08bcf95f19f
+vendor/lib/libWVStreamControlAPI_L1.so|6b28492ac55b9a3d86993343cf2c8b55240b3420
+vendor/lib/libdrmdecrypt.so
+vendor/lib/libwvdrm_L1.so|3eaf8ed1cb337608a1ccdb80d2c95804e7aea323
+vendor/lib/libwvm.so|59c4c078f4b897ddac8f665309b7a3f25522f207
+vendor/lib/mediadrm/libwvdrmengine.so|6bdcc4d59b07ccbdd7b07a99677406ade3d2e232
+

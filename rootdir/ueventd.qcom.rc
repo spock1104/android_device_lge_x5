@@ -197,3 +197,6 @@
 # Begin Immersion changes
 /dev/tspdrv               0660   system       system
 # End Immersion changes
+
+# Widevine DRM
+/dev/qseecom              0660   system     drmrpc
