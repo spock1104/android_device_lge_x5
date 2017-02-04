@@ -30,6 +30,8 @@ ro.qc.sensors.smgr_mag_cal_en=false
 ro.qc.sensors.max_grav_no_gyro=50
 ro.qc.sensors.max_geomag_rotvec=50
 
+qcom.bluetooth.soc=smd
+
 # Telephony properties for volt
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=false
