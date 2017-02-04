@@ -1,5 +1,5 @@
 /*
-   Copyright (c) 2013, The Linux Foundation. All rights reserved.
+   Copyright (c) 2014, The Linux Foundation. All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -28,27 +28,26 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
 #include "util.h"
 
-#include "init_msm.h"
-
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
-    char platform[PROP_VALUE_MAX];
-    int rc;
+    std::string devicename;
 
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
+    std::string serial = property_get("ro.boot.serialno");
 
-    rc = property_get("ro.board.platform", platform);
-
-    ERROR("Using MSM default libinit for ro.board.platform '%s'\n",
-          rc ? platform : "<undefined>");
-
-    property_set(PROP_LCDDENSITY, "240");
+    property_set("ro.product.model", "LG-LS740");
+    property_set("ro.product.device", "x5");
+    property_set("ro.nfc.port", "I2C");
+    property_set("ro.build.description", "x5_spr_us-user 5.0.2 LRX22G.A1423481010 15040202274a7 release-keys");
+    property_set("ro.build.fingerprint", "lge/x5_spr_us/x5:5.0.2/LRX22G.A1423481010/15040202274a7:user/release-keys");
+    property_set("persist.radio.multisim.config", "");
+    property_set("telephony.lteOnCdmaDevice", "1");
+    property_set("ro.telephony.ril_class", "LgeX5RIL");
 }
