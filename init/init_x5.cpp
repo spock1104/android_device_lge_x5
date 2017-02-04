@@ -38,7 +38,7 @@
 
 void vendor_load_properties()
 {
-    char devicename[PROP_VALUE_MAX];
+    std::string devicename;
 
     std::string serial = property_get("ro.boot.serialno");
 
